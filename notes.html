@@ -153,59 +153,15 @@
     <div class="container">
         <a href="index.html" class="back-link">&larr; Return to Landing Page</a>
 
-        <!-- INITIAL CONTEXT -->
+        <!-- RAW NOTES SECTION -->
         <div class="card">
-            <span class="tag tag-yellow">Phase 1: Real-World Foundation</span>
-            <h2>Initial Context & Human Insights</h2>
-            <p><strong>Operations:</strong> Tom Kehoe runs the garage with mechanics servicing around 25 cars a day. Bríd runs the office.</p>
-            <p><strong>The Bottleneck:</strong> The garage receives roughly 60 phone calls per day for vehicle updates. When Bríd is busy, a mechanic has to stop working to answer them, which costs about 90 minutes of mechanic time per day.</p>
-            <p><strong>Forgotten Vehicles:</strong> Cars waiting on parts often get overlooked, sometimes sitting for 5 days or more with no updates communicated to the customer.</p>
-            <p><strong>Target Market:</strong> Independent owner-run garages (who would pay for a generic version of this solution).</p>
-        </div>
-
-        <!-- REQUIRED SYSTEM VIEWS -->
-        <div class="card">
-            <span class="tag tag-green">Phase 2: Functional Scope</span>
-            <h2>Required System Views & Constraints</h2>
+            <span class="tag tag-yellow">Phase 1: Raw Notes</span>
+            <h2>Raw Notes</h2>
+            <p>Tom Kehoe services 25 cars a day. Bríd Kehoe runs the office.</p>
+            <p>There are about 60 phone calls per day for car updates. When Bríd is busy, a mechanic has to stop working to answer them, which costs 90 minutes of mechanic time per day.</p>
+            <p>Cars waiting for parts get forgotten. Some stay 5 days or more with no one calling the customer.</p>
+            <p>Internal app with three views:</p>
             <ul>
-                <li><strong>Workshop View:</strong> Needs to run on a wall tablet with greasy hands. Features large touch targets, zero typing, and 1-tap stage progression (Booked in, Being checked, Waiting for parts, Being fixed, Ready to collect). Shows who each car is assigned to.</li>
-                <li><strong>Customer View:</strong> A secure status screen accessed strictly via job number and vehicle registration. Displays only that specific car's stage and a short plain-English note, keeping all other customer data private.</li>
-                <li><strong>Office View:</strong> Groups cars by stage, flags cars waiting for parts for more than 2 days in red, and tracks ready-for-collection counters.</li>
-            </ul>
-        </div>
-
-        <!-- EXACT PROMPTS & AI COLLABORATION -->
-        <div class="card">
-            <span class="tag tag-purple">Phase 3: Exact Prompts & Gemini Iterations</span>
-            <h2>My Exact Prompts Used with Gemini</h2>
-            <p>From my hunch, I tried to add my insights to make it more freely. I committed, checked the code, and iterated with my input with the AI. I actively checked for hallucinations, invented data, and fake testimonials.</p>
-            <p>I used Gemini and polished the prompt, committing a few times until I got the result I wanted. I learned from this exercise that AI gives you general info and sometimes due to communication misinterprets things.</p>
-            
-            <p><strong>Prompt 1: Core App Foundation</strong></p>
-            <div class="prompt-box">Build a single-file web app (HTML, CSS and JavaScript in one file, no external libraries, works on a phone) called BAY WATCH, for Kehoe's Garage, Enniscorthy, Co. Wexford...</div>
-
-            <p><strong>Prompt 2: Access Control & Mechanic Reassignment</strong></p>
-            <div class="prompt-box">Change it so if a customer access only can view the customer portal. As it is a demo, the password and log in is showing and disposable. Make a part with person assigned only on the workshop part. Make it more easy to assign and reassign mechanic. Think these will be people with greasy hands and busy environment. Also make it more design savy.</div>
-
-            <p><strong>Prompt 3: Landing Page & SaaS Structure</strong></p>
-            <div class="prompt-box">Build index.html: a landing page that sells the generic version of BAY WATCH, not to Kehoe's Garage and not to everyone - to your Task 1 niche (Rural independent owner-run garages in Leinster)... Include headline, problem quotes, 3-step guide, pricing assumption (€199 setup + €59/month), and waiting list form.</div>
-
-            <p><strong>Prompt 4: UX & Tablet Mockup Refinements</strong></p>
-            <div class="prompt-box">Make it more UX friendly. Exclude any task. Make the app from before like a real landing page for these service. Add more colour and cool design car brand inspired, make it mobile first. Eliminate testimonial. Make it true to the app designed. Make the model from tablet interactive and the same as demo with interaction but not dynamic sizing. Add contact formulation like before.</div>
-        </div>
-
-        <!-- CLOSING REFLECTION -->
-        <div class="card" style="border-color: #60a5fa;">
-            <h2>Key Takeaway</h2>
-            <p>Iterating closely with AI required clear human insights regarding the physical realities of a rural independent garage. Refining prompts multiple times ensured the final artifact matched exact workflow and UI expectations without unnecessary fluff.</p>
-        </div>
-
-        <a href="index.html" class="back-link">&larr; Return to Landing Page</a>
-    </div>
-
-    <footer>
-        <p>BAY WATCH &bull; Documentation</p>
-    </footer>
-
-</body>
-</html>
+                <li><strong>Workshop:</strong> Every car in today, each with its stage (Booked in, Being checked, Waiting for parts, Being fixed, Ready to collect). One tap moves a car to the next stage.</li>
+                <li><strong>Customer:</strong> A status screen found by job number and car registration, showing that car's stage and a short plain-English note, and nothing about any other customer or car.</li>
+                <li><strong>Office:</strong> Cars grouped by stage. A car waiting for
