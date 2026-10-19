@@ -179,14 +179,19 @@
             line-height: 1.5;
         }
 
-        /* LIVE EMBEDDED PREVIEW APP STYLES */
-        .preview-wrapper {
+        /* FIXED TABLET MOCKUP CONTAINER (NO DYNAMIC SIZING) */
+        .tablet-container {
+            width: 1024px;
+            height: 768px;
+            margin: 30px auto;
             background: #090d16;
-            border: 4px solid #334155;
-            border-radius: 20px;
+            border: 12px solid #1e293b;
+            border-radius: 28px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+            display: flex;
+            flex-direction: column;
             overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-            margin-top: 20px;
+            position: relative;
         }
 
         .demo-bar {
@@ -200,6 +205,7 @@
             flex-wrap: wrap;
             gap: 10px;
             border-bottom: 1px solid #1e293b;
+            flex-shrink: 0;
         }
 
         .demo-chip {
@@ -226,6 +232,7 @@
             justify-content: center;
             gap: 8px;
             padding: 8px 16px;
+            flex-shrink: 0;
         }
 
         body.mode-customer nav {
@@ -254,12 +261,14 @@
         main {
             padding: 20px;
             background: #f1f5f9;
+            flex-grow: 1;
+            overflow-y: auto;
         }
 
         .view-section { display: none; }
         .view-section.active { display: block; }
 
-        /* Workshop View Styles inside preview */
+        /* Workshop View Styles inside tablet */
         .mechanic-filter-bar {
             background: var(--bg-card-dark);
             padding: 12px;
@@ -477,7 +486,6 @@
 
         .alert-card .summary-value { color: var(--alert-red-text); }
 
-        /* HORIZONTAL KANBAN COLUMNS WRAPPER */
         .office-columns {
             display: flex;
             gap: 16px;
@@ -641,14 +649,14 @@
                 <span>Garage Management System</span>
             </div>
         </div>
-        <a href="#liveDemo" class="btn-cta" style="padding: 10px 20px; font-size: 0.9rem;">Jump to Live App</a>
+        <a href="https://yazminaraoz.github.io/CA2TASK2ALPHA/" target="_blank" class="btn-cta" style="padding: 10px 20px; font-size: 0.9rem;">Try the demo</a>
     </header>
 
     <!-- HERO SECTION -->
     <section class="hero">
         <h2>Stop answering "Where's me motor?"<br><span>Save 90 mins a day</span></h2>
         <p>One-tap job board for mobile and tablet + a link customers check themselves.</p>
-        <a href="#liveDemo" class="btn-cta">Try the demo - Live Workshop Board</a>
+        <a href="https://yazminaraoz.github.io/CA2TASK2ALPHA/" target="_blank" class="btn-cta">Try the demo - Live Workshop Board</a>
     </section>
 
     <!-- BENEFITS SECTION -->
@@ -670,12 +678,12 @@
         </div>
     </section>
 
-    <!-- LIVE EMBEDDED DEMO APP SECTION -->
+    <!-- TABLET MODEL PREVIEW SECTION -->
     <section class="section-container" id="liveDemo">
-        <h2 class="section-title" style="margin-bottom: 10px;">Interactive Alpha App Preview</h2>
-        <p style="text-align: center; color: var(--text-muted); margin-bottom: 24px;">Test out the fully functional live workshop tablet, office dashboard, and customer lookup portal below.</p>
+        <h2 class="section-title" style="margin-bottom: 10px;">Model from a Tablet</h2>
+        <p style="text-align: center; color: var(--text-muted); margin-bottom: 24px;">Interact with the live alpha system mimicking a standard workshop tablet layout.</p>
         
-        <div class="preview-wrapper">
+        <div class="tablet-container">
             <!-- DEMO ROLE TOGGLE BAR -->
             <div class="demo-bar">
                 <div>
@@ -715,355 +723,3 @@
                         <div class="summary-card">
                             <div class="summary-title">Total Cars In Today</div>
                             <div class="summary-value" id="summaryTotal">0</div>
-                        </div>
-                        <div class="summary-card alert-card">
-                            <div class="summary-title">Parts Delayed (> 2 Days)</div>
-                            <div class="summary-value" id="summaryPartsAlert">0</div>
-                        </div>
-                        <div class="summary-card">
-                            <div class="summary-title">Ready for Collection</div>
-                            <div class="summary-value" id="summaryReady">0</div>
-                        </div>
-                    </div>
-                    <div class="office-columns">
-                        <div class="office-column">
-                            <div class="col-header"><span>Booked In</span><span class="col-count" id="count-Booked in">0</span></div>
-                            <div id="col-Booked in"></div>
-                        </div>
-                        <div class="office-column">
-                            <div class="col-header"><span>Being Checked</span><span class="col-count" id="count-Being checked">0</span></div>
-                            <div id="col-Being checked"></div>
-                        </div>
-                        <div class="office-column">
-                            <div class="col-header"><span>Waiting for Parts</span><span class="col-count" id="count-Waiting for parts">0</span></div>
-                            <div id="col-Waiting for parts"></div>
-                        </div>
-                        <div class="office-column">
-                            <div class="col-header"><span>Being Fixed</span><span class="col-count" id="count-Being fixed">0</span></div>
-                            <div id="col-Being fixed"></div>
-                        </div>
-                        <div class="office-column">
-                            <div class="col-header"><span>Ready to Collect</span><span class="col-count" id="count-Ready to collect">0</span></div>
-                            <div id="col-Ready to collect"></div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- VIEW 3: CUSTOMER PORTAL -->
-                <section id="customerView" class="view-section">
-                    <div class="customer-card">
-                        <div style="background: #e0f2fe; padding: 10px; border-radius: 8px; margin-bottom: 16px; font-size: 0.8rem; color: #0369a1; text-align: center;">
-                            🔒 <strong>ISOLATED CUSTOMER PORTAL:</strong> Staff controls and internal notes are hidden.
-                        </div>
-                        <h2 style="font-size: 1.4rem; text-align: center; margin-bottom: 16px;">Customer Vehicle Tracker</h2>
-                        <form onsubmit="handleCustomerSearch(event)">
-                            <div class="form-group">
-                                <label>Job Number</label>
-                                <input type="text" id="searchJobNo" class="form-control" placeholder="E.G. JOB-101" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Vehicle Registration</label>
-                                <input type="text" id="searchReg" class="form-control" placeholder="E.G. 16-D-1234" required>
-                            </div>
-                            <button type="submit" class="btn-giant-stage stage-btn-blue" style="margin-top: 10px;">Check Vehicle Progress</button>
-                        </form>
-                        <div id="customerError" style="color: #dc2626; background: #fee2e2; padding: 10px; border-radius: 8px; font-weight: 700; margin-top: 14px; display: none; text-align: center;">
-                            No matching vehicle found. Try JOB-101 with 16-D-1234.
-                        </div>
-                        <div id="customerResult" class="customer-result-box" style="margin-top: 16px;">
-                            <div style="font-size: 0.8rem; font-weight: 800; color: var(--text-muted);">REGISTRATION</div>
-                            <div class="irish-plate" id="resultReg" style="font-size: 1.8rem; margin: 8px 0;">--</div>
-                            <div style="margin: 14px 0; padding: 14px; background: #fff; border-radius: 10px;">
-                                <div id="resultBadge" class="pill pill-booked" style="font-size: 1rem;">BOOKED IN</div>
-                                <div id="resultNote" style="font-size: 1.1rem; color: #1e293b; margin-top: 8px; font-weight: 600;">--</div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </main>
-        </div>
-    </section>
-
-    <!-- PRICING SECTION -->
-    <section class="section-container">
-        <h2 class="section-title">Pricing</h2>
-        <div class="pricing-card">
-            <h3>Standard Garage Package</h3>
-            <div class="price-tag">€199 <span style="font-size: 1rem; color: #94a3b8;">set-up</span> + €59<span style="font-size: 1rem; color: #94a3b8;">/month</span></div>
-            <p style="color: #94a3b8; font-size: 0.95rem; line-height: 1.5; margin-bottom: 24px;">
-                Assumption from Task 1: €199 set-up + €59/month per garage (up to 5 users + customer portal). Reasoning: saves ~€600/month in mechanic time (90 mins/day). Cancel anytime.
-            </p>
-            <a href="#waitlistSection" class="btn-cta" style="padding: 14px 28px; font-size: 1rem;">Join Waiting List</a>
-        </div>
-    </section>
-
-    <!-- WAITING LIST SECTION -->
-    <section class="section-container" id="waitlistSection">
-        <div class="waitlist-box">
-            <h2 style="font-size: 1.6rem; font-weight: 900; text-align: center; margin-bottom: 20px;">Join the waiting list for rural garages</h2>
-            <form id="waitlistForm" onsubmit="handleWaitlistSubmit(event)">
-                <div class="form-group">
-                    <label>Name</label>
-                    <input type="text" class="form-control" style="font-size: 1rem; text-transform: none;" placeholder="Tom Kehoe" required>
-                </div>
-                <div class="form-group">
-                    <label>Garage Name</label>
-                    <input type="text" class="form-control" style="font-size: 1rem; text-transform: none;" placeholder="Kehoe's Garage" required>
-                </div>
-                <div class="form-group">
-                    <label>Phone or Email</label>
-                    <input type="text" class="form-control" style="font-size: 1rem; text-transform: none;" placeholder="087 123 4567" required>
-                </div>
-                <div class="form-group">
-                    <label>County</label>
-                    <select class="form-control" style="font-size: 1rem; text-transform: none;" required>
-                        <option value="">Select County...</option>
-                        <option value="Wexford">Wexford</option>
-                        <option value="Carlow">Carlow</option>
-                        <option value="Wicklow">Wicklow</option>
-                        <option value="Kildare">Kildare</option>
-                        <option value="Other">Other</option>
-                    </select>
-                </div>
-                <button type="submit" class="btn-cta" style="width: 100%; justify-content: center; margin-top: 10px;">Join list</button>
-            </form>
-            <div id="waitlistSuccess" style="display: none; text-align: center; color: #059669; font-weight: 800; font-size: 1.1rem; padding: 20px;">
-                Thanks - you're on the list. We'll be in touch for a 15-min demo on your own mobile or tablet.
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer>
-        <div>BAY WATCH &bull; Rural Independent Garage Management</div>
-        <div><a href="notes.html">Behind the build</a></div>
-    </footer>
-
-    <!-- JAVASCRIPT LOGIC FOR PREVIEW APP -->
-    <script>
-        const MECHANICS = [
-            { id: "Tom Kehoe", name: "Tom", initials: "TK", color: "var(--mech-tom)" },
-            { id: "Paddy", name: "Paddy", initials: "P", color: "var(--mech-paddy)" },
-            { id: "Liam", name: "Liam", initials: "L", color: "var(--mech-liam)" },
-            { id: "Seán", name: "Seán", initials: "S", color: "var(--mech-sean)" },
-            { id: "Connor", name: "Connor", initials: "C", color: "var(--mech-connor)" }
-        ];
-
-        const STAGES = ["Booked in", "Being checked", "Waiting for parts", "Being fixed", "Ready to collect"];
-
-        let jobs = [
-            { id: "JOB-101", reg: "16-D-1234", model: "Ford Focus", surname: "Murphy", stage: "Waiting for parts", partsDaysWaiting: 2, assignedTo: "Paddy", note: "Waiting on front brake caliper." },
-            { id: "JOB-102", reg: "10-WX-5678", model: "Volkswagen Passat", surname: "Doyle", stage: "Waiting for parts", partsDaysWaiting: 5, assignedTo: "Liam", note: "Special order clutch flywheel." },
-            { id: "JOB-103", reg: "211-WX-890", model: "Toyota Corolla", surname: "Walsh", stage: "Ready to collect", partsDaysWaiting: 0, assignedTo: "Tom Kehoe", note: "Full annual service complete." },
-            { id: "JOB-104", reg: "192-D-5541", model: "Hyundai Tucson", surname: "O'Connor", stage: "Ready to collect", partsDaysWaiting: 0, assignedTo: "Seán", note: "Pre-NCT check passed." },
-            { id: "JOB-105", reg: "221-D-3321", model: "Nissan Qashqai", surname: "Byrne", stage: "Being checked", partsDaysWaiting: 0, assignedTo: "Connor", note: "Undergoing diagnostic check." },
-            { id: "JOB-106", reg: "181-WX-432", model: "Audi A4", surname: "Kelly", stage: "Being fixed", partsDaysWaiting: 0, assignedTo: "Paddy", note: "Replacing timing belt." },
-            { id: "JOB-107", reg: "202-WX-991", model: "Skoda Octavia", surname: "Roche", stage: "Booked in", partsDaysWaiting: 0, assignedTo: "Unassigned", note: "Scheduled oil service." },
-            { id: "JOB-108", reg: "151-D-7788", model: "Renault Clio", surname: "Brennan", stage: "Waiting for parts", partsDaysWaiting: 1, assignedTo: "Liam", note: "Headlamp assembly ordered." }
-        ];
-
-        let activeMechanicFilter = 'ALL';
-        let currentRole = 'workshop';
-
-        window.onload = function() {
-            renderAllViews();
-        };
-
-        function setRoleMode(role) {
-            currentRole = role;
-            document.body.className = `mode-${role}`;
-            document.querySelectorAll('.demo-chip').forEach(c => c.classList.remove('active-role'));
-            document.getElementById(`chip-${role}`).classList.add('active-role');
-
-            const labelEl = document.getElementById('currentRoleLabel');
-            if (role === 'workshop') { labelEl.textContent = "Workshop Tablet"; switchTab('workshop'); }
-            else if (role === 'office') { labelEl.textContent = "Office Dashboard"; switchTab('office'); }
-            else if (role === 'customer') { labelEl.textContent = "Customer Portal Only (Locked)"; switchTab('customer'); }
-        }
-
-        function switchTab(tabName) {
-            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-            document.querySelectorAll('.view-section').forEach(s => s.classList.remove('active'));
-            if (tabName === 'workshop') {
-                document.getElementById('nav-workshop').classList.add('active');
-                document.getElementById('workshopView').classList.add('active');
-            } else if (tabName === 'office') {
-                document.getElementById('nav-office').classList.add('active');
-                document.getElementById('officeView').classList.add('active');
-            } else if (tabName === 'customer') {
-                document.getElementById('customerView').classList.add('active');
-            }
-            renderAllViews();
-        }
-
-        function renderAllViews() {
-            updateFilterCounts();
-            renderWorkshopGrid();
-            renderOfficeView();
-        }
-
-        function getMechanicInfo(name) {
-            return MECHANICS.find(m => m.id === name) || { id: "Unassigned", name: "Unassigned", initials: "?", color: "var(--mech-none)" };
-        }
-
-        function filterWorkshopByMechanic(mechName) {
-            activeMechanicFilter = mechName;
-            document.querySelectorAll('.mech-filter-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById(`filter-${mechName}`).classList.add('active');
-            renderWorkshopGrid();
-        }
-
-        function updateFilterCounts() {
-            document.getElementById('countFilterAll').textContent = jobs.length;
-            document.getElementById('countFilterTom').textContent = jobs.filter(j => j.assignedTo === 'Tom Kehoe').length;
-            document.getElementById('countFilterPaddy').textContent = jobs.filter(j => j.assignedTo === 'Paddy').length;
-            document.getElementById('countFilterLiam').textContent = jobs.filter(j => j.assignedTo === 'Liam').length;
-            document.getElementById('countFilterSean').textContent = jobs.filter(j => j.assignedTo === 'Seán').length;
-            document.getElementById('countFilterConnor').textContent = jobs.filter(j => j.assignedTo === 'Connor').length;
-        }
-
-        function renderWorkshopGrid() {
-            const grid = document.getElementById('workshopGrid');
-            grid.innerHTML = '';
-            const filtered = activeMechanicFilter === 'ALL' ? jobs : jobs.filter(j => j.assignedTo === activeMechanicFilter);
-
-            filtered.forEach(job => {
-                const isOverdue = job.stage === 'Waiting for parts' && job.partsDaysWaiting >= 2;
-                const mechInfo = getMechanicInfo(job.assignedTo);
-                const card = document.createElement('div');
-                card.className = `car-card ${isOverdue ? 'overdue-parts' : ''}`;
-
-                const mechButtons = MECHANICS.map(m => {
-                    const sel = job.assignedTo === m.id;
-                    return `<button class="mech-tap-btn ${sel ? 'selected' : ''}" onclick="quickAssign('${job.id}', '${m.id}')">
-                        <span style="width:20px;height:20px;border-radius:50%;background:${m.color};color:#fff;font-size:0.65rem;display:flex;align-items:center;justify-content:center;font-weight:900;">${m.initials}</span>
-                        <span style="font-size:0.65rem;font-weight:800;margin-top:2px;">${m.name}</span>
-                    </button>`;
-                }).join('');
-
-                let stageBtn = '';
-                if (job.stage === 'Booked in') stageBtn = `<button class="btn-giant-stage stage-btn-blue" onclick="advance('${job.id}', 'Being checked')">TAP: START CHECKING &rarr;</button>`;
-                else if (job.stage === 'Being checked') stageBtn = `<button class="btn-giant-stage stage-btn-blue" onclick="advance('${job.id}', 'Being fixed')">TAP: BEING FIXED &rarr;</button>`;
-                else if (job.stage === 'Waiting for parts') stageBtn = `<button class="btn-giant-stage stage-btn-blue" onclick="advance('${job.id}', 'Being fixed')">PARTS ARRIVED &rarr; FIX</button>`;
-                else if (job.stage === 'Being fixed') stageBtn = `<button class="btn-giant-stage stage-btn-green" onclick="advance('${job.id}', 'Ready to collect')">TAP: READY &check;</button>`;
-                else if (job.stage === 'Ready to collect') stageBtn = `<button class="btn-giant-stage stage-btn-dark" onclick="removeJob('${job.id}')">&check; HANDED OVER</button>`;
-
-                card.innerHTML = `
-                    <div>
-                        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
-                            <span class="irish-plate">${job.reg}</span>
-                            <div class="current-mechanic-badge">
-                                <span class="avatar-circle" style="background:${mechInfo.color}">${mechInfo.initials}</span>
-                                <span>${mechInfo.name}</span>
-                            </div>
-                        </div>
-                        <div style="margin: 12px 0;">
-                            <div style="font-size:1.3rem; font-weight:900;">${job.model}</div>
-                            <div style="font-size:0.95rem; color:#475569; font-weight:700;">Owner: ${job.surname} &bull; ${job.id}</div>
-                        </div>
-                        <div style="margin-bottom:10px;">
-                            ${isOverdue ? `<span class="pill pill-alert">WAITING PARTS (${job.partsDaysWaiting} DAYS OVERDUE!)</span>` : `<span class="pill ${getBadgeClass(job.stage)}">${job.stage}</span>`}
-                        </div>
-                        <div class="mechanic-touch-picker">
-                            <div style="font-size:0.7rem; font-weight:900; color:#475569; text-transform:uppercase; margin-bottom:6px;">1-Tap Assign Mechanic:</div>
-                            <div class="mechanic-buttons-row">${mechButtons}</div>
-                        </div>
-                    </div>
-                    <div>${stageBtn}</div>
-                `;
-                grid.appendChild(card);
-            });
-        }
-
-        function quickAssign(jobId, mechId) {
-            const j = jobs.find(x => x.id === jobId);
-            if (j) { j.assignedTo = mechId; renderAllViews(); }
-        }
-
-        function advance(jobId, nextStage) {
-            const j = jobs.find(x => x.id === jobId);
-            if (j) { j.stage = nextStage; renderAllViews(); }
-        }
-
-        function removeJob(jobId) {
-            jobs = jobs.filter(x => x.id !== jobId);
-            renderAllViews();
-        }
-
-        function getBadgeClass(st) {
-            switch(st) {
-                case 'Booked in': return 'pill-booked';
-                case 'Being checked': return 'pill-checked';
-                case 'Waiting for parts': return 'pill-parts';
-                case 'Being fixed': return 'pill-fixed';
-                case 'Ready to collect': return 'pill-ready';
-                default: return 'pill-booked';
-            }
-        }
-
-        function renderOfficeView() {
-            document.getElementById('summaryTotal').textContent = jobs.length;
-            document.getElementById('summaryPartsAlert').textContent = jobs.filter(j => j.stage === 'Waiting for parts' && j.partsDaysWaiting >= 2).length;
-            document.getElementById('summaryReady').textContent = jobs.filter(j => j.stage === 'Ready to collect').length;
-
-            STAGES.forEach(st => {
-                document.getElementById(`col-${st}`).innerHTML = '';
-                document.getElementById(`count-${st}`).textContent = '0';
-            });
-
-            STAGES.forEach(st => {
-                const list = jobs.filter(j => j.stage === st);
-                document.getElementById(`count-${st}`).textContent = list.length;
-                const col = document.getElementById(`col-${st}`);
-
-                list.forEach(job => {
-                    const overdue = st === 'Waiting for parts' && job.partsDaysWaiting >= 2;
-                    const mech = getMechanicInfo(job.assignedTo);
-                    const card = document.createElement('div');
-                    card.className = `office-car-card ${overdue ? 'parts-overdue' : ''}`;
-                    card.innerHTML = `
-                        <div style="display:flex; justify-content:space-between;"><span class="irish-plate" style="font-size:1rem; padding:2px 6px;">${job.reg}</span><span style="font-size:0.75rem; font-weight:800;">${job.id}</span></div>
-                        <div style="font-weight:900; margin-top:6px;">${job.model}</div>
-                        <div style="font-size:0.8rem; color:#475569;">${job.surname}</div>
-                        <div style="margin-top:6px; display:flex; align-items:center; gap:6px;">
-                            <span style="width:20px;height:20px;border-radius:50%;background:${mech.color};color:#fff;font-size:0.65rem;display:flex;align-items:center;justify-content:center;font-weight:900;">${mech.initials}</span>
-                            <span style="font-size:0.75rem; font-weight:800;">${mech.name}</span>
-                        </div>
-                        ${overdue ? `<div style="color:var(--alert-red-text); font-weight:900; font-size:0.75rem; margin-top:4px;">⚠️ ${job.partsDaysWaiting} DAYS OVERDUE</div>` : ''}
-                        <button class="btn-call-customer" onclick="alert('Calling ${job.surname}...')">📞 Call Customer</button>
-                    `;
-                    col.appendChild(card);
-                });
-            });
-        }
-
-        function handleCustomerSearch(e) {
-            e.preventDefault();
-            const jobNo = document.getElementById('searchJobNo').value.trim().toUpperCase();
-            const reg = document.getElementById('searchReg').value.replace(/\s+/g, '').toUpperCase();
-            const found = jobs.find(j => j.id.toUpperCase() === jobNo && j.reg.replace(/\s+/g, '').toUpperCase() === reg);
-            const err = document.getElementById('customerError');
-            const res = document.getElementById('customerResult');
-
-            if (found) {
-                err.style.display = 'none';
-                document.getElementById('resultReg').textContent = found.reg;
-                const badge = document.getElementById('resultBadge');
-                badge.textContent = found.stage.toUpperCase();
-                badge.className = `pill ${getBadgeClass(found.stage)}`;
-                document.getElementById('resultNote').textContent = `"${found.note}"`;
-                res.classList.add('active');
-            } else {
-                res.classList.remove('active');
-                err.style.display = 'block';
-            }
-        }
-
-        function handleWaitlistSubmit(e) {
-            e.preventDefault();
-            document.getElementById('waitlistForm').style.display = 'none';
-            document.getElementById('waitlistSuccess').style.display = 'block';
-        }
-    </script>
-</body>
-</html>
