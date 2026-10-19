@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BAY WATCH - Job Board for Rural Garages</title>
+    <style>
+        :root {
+            --bg-dark: #090d16;
+            --bg-card: #131b2e;
+            --bg-surface: #1e293b;
+            --border-color: #334155;
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --accent-red: #ef4444;
+            --accent-yellow: #fef08a;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.5;
+            padding-bottom: 60px;
+        }
+
+        header {
+            background: rgba(9, 13, 22, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .brand-badge {
+            background: var(--primary);
+            color: #fff;
+            font-weight: 900;
+            font-size: 1.1rem;
+            width: 38px;
+            height: 38px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 12px rgba(37, 99, 235, 0.5);
+        }
+
+        .brand-name {
+            font-weight: 900;
+            font-size: 1.2rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .hero-container {
+            max-width: 900px;
+            margin: 40px auto 20px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(37, 99, 235, 0.15);
+            color: #60a5fa;
+            border: 1px solid rgba(37, 99, 235, 0.3);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            font-weight: 900;
+            line-height: 1.15;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        h1 span {
+            color: #60a5fa;
+        }
+
+        .hero-sub {
+            font-size: clamp(1.05rem, 2vw, 1.25rem);
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 32px auto;
+        }
+
+        .cta-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 40px;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: #fff;
+            font-size: 1.15rem;
+            font-weight: 800;
+            padding: 18px 36px;
+            border-radius: 14px;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
+            transition: transform 0.1s ease, background 0.2s ease;
+        }
+
+        .btn-primary:active {
+            transform: scale(0.97);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-hover);
+        }
+
+        .cta-subtext {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* LIVE TABLET MOCKUP FRAME */
+        .tablet-mockup-wrapper {
+            max-width: 1000px;
+            margin: 0 auto 60px auto;
+            padding: 0 16px;
+        }
+
+        .tablet-frame {
+            background: #020617;
+            border: 4px solid #334155;
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+            overflow: hidden;
+        }
+
+        .tablet-screen-header {
+            background: #0f172a;
+            padding: 12px 20px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tablet-nav-tabs {
+            display: flex;
+            gap: 6px;
+        }
+
+        .tab-btn {
+            background: #1e293b;
+            color: var(--text-muted);
+            border: 1px solid #334155;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: #fff;
+            border-color: #60a5fa;
+        }
+
+        .tablet-viewport {
+            background: #090d16;
+            padding: 20px;
+            min-height: 520px;
+            max-height: 650px;
+            overflow-y: auto;
+        }
+
+        /* MOCKUP WORKSHOP VIEW */
+        .workshop-preview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 16px;
+            text-align: left;
+        }
+
+        .preview-card {
+            background: var(--bg-card);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 14px;
+        }
+
+        .preview-card.alert-card {
+            border-color: var(--accent-red);
+            background: rgba(239, 68, 68, 0.08);
+        }
+
+        .plate-pill {
+            background: var(--accent-yellow);
+            color: #0f172a;
+            font-weight: 900;
+            font-size: 1.1rem;
+            padding: 4px 10px;
+            border-radius: 6px;
+            border: 2px solid #0f172a;
+            display: inline-block;
+        }
+
+        .status-badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            border-radius: 20px;
+        }
+
+        .badge-booked { background: #334155; color: #f8fafc; }
+        .badge-checked { background: #1e3a8a; color: #93c5fd; }
+        .badge-parts { background: #78350f; color: #fde68a; }
+        .badge-fixed { background: #581c87; color: #d8b4fe; }
+        .badge-ready { background: #065f46; color: #a7f3d0; }
+        .badge-alert { background: #991b1b; color: #fecaca; animation: pulse 1.5s infinite; }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.6; }
+            100% { opacity: 1; }
+        }
+
+        .tap-action-btn {
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 900;
+            font-size: 0.85rem;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+        }
+
+        .tap-action-btn:hover {
+            background: var(--primary-hover);
+        }
+
+        /* MOCKUP OFFICE VIEW */
+        .office-preview-columns {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px;
+            text-align: left;
+        }
+
+        .office-col {
+            background: #111827;
+            border-radius: 10px;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .office-col-title {
+            font-size: 0.85rem;
+            font-weight: 900;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .office-mini-card {
+            background: var(--bg-card);
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 8px;
+            border-left: 4px solid var(--primary);
+            font-size: 0.85rem;
+        }
+
+        .office-mini-card.overdue {
+            background: rgba(239, 68, 68, 0.15);
+            border-color: var(--accent-red);
+            border-left: 4px solid var(--accent-red);
+        }
+
+        /* MOCKUP CUSTOMER VIEW */
+        .customer-preview-box {
+            max-width: 450px;
+            margin: 40px auto;
+            background: var(--bg-card);
+            padding: 24px;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        /* SECTIONS */
+        .section-container {
+            max-width: 800px;
+            margin: 0 auto 60px auto;
+            padding: 0 20px;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 900;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .quote-box {
+            background: var(--bg-card);
+            border-left: 5px solid var(--primary);
+            padding: 20px;
+            border-radius: 0 12px 12px 0;
+            margin-bottom: 16px;
+            font-style: italic;
+            color: #e2e8f0;
+            font-size: 1.05rem;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-top: 24px;
+        }
+
+        .step-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 24px;
+            border-radius: 16px;
+        }
+
+        .step-num {
+            color: #60a5fa;
+            font-weight: 900;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .step-card h3 {
+            font-size: 1.15rem;
+            font-weight: 900;
+            margin-bottom: 8px;
+        }
+
+        .step-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* PRICING */
+        .pricing-card {
+            background: linear-gradient(135deg, #131b2e 0%, #1e293b 100%);
+            border: 2px solid #3b82f6;
+            border-radius: 20px;
+            padding: 32px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.2);
+        }
+
+        .price-tag {
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: #60a5fa;
+            margin: 16px 0;
+        }
+
+        .price-details {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 24px;
+        }
+
+        /* WAITING LIST FORM */
+        .waitlist-form {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 32px;
+            border-radius: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 800;
+            margin-bottom: 6px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 14px;
+            background: var(--bg-dark);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .form-input:focus {
+            border-color: var(--primary);
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 24px;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        footer a {
+            color: #60a5fa;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        @media (max-width: 768px) {
+            .hero-container {
+                margin-top: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="brand">
+            <div class="brand-badge">BW</div>
+            <div class="brand-name">BAY WATCH</div>
+        </div>
+        <a href="https://yazminaraoz.github.io/CA2TASK2ALPHA/" target="_blank" style="color: #60a5fa; font-weight: 800; text-decoration: none; font-size: 0.9rem;">Live Demo &rarr;</a>
+    </header>
+
+    <div class="hero-container">
+        <span class="hero-badge">Built for Independent Garages</span>
+        <h1>Stop answering "Where's me motor?"<br><span>Save 90 mins a day</span></h1>
+        <p class="hero-sub">One-tap job board for your wall tablet + a clean status link your customers check themselves.</p>
+        
+        <div class="cta-group">
+            <a href="https://yazminaraoz.github.io/CA2TASK2ALPHA/" target="_blank" class="btn-primary">
+                Try the demo - Live Workshop Board
+            </a>
+            <span class="cta-subtext">Built for greasy hands — large targets, zero typing in the workshop</span>
+        </div>
+    </div>
+
+    <!-- LIVE INTERACTIVE TABLET PREVIEW MOCKUP -->
+    <div class="tablet-mockup-wrapper">
+        <div class="tablet-frame">
+            <div class="tablet-screen-header">
+                <span style="font-weight: 800; font-size: 0.9rem; color: #60a5fa;">Interactive Wall Tablet Mockup</span>
+                <div class="tablet-nav-tabs">
+                    <button class="tab-btn active" onclick="switchMockupTab('workshop', this)">1. Workshop Wall</button>
+                    <button class="tab-btn" onclick="switchMockupTab('office', this)">2. Office Board</button>
+                    <button class="tab-btn" onclick="switchMockupTab('customer', this)">3. Customer Portal</button>
+                </div>
+            </div>
+
+            <div class="tablet-viewport" id="mockupViewport">
+                <!-- VIEW 1: WORKSHOP -->
+                <div id="mockupWorkshop" class="workshop-preview-grid">
+                    <div class="preview-card alert-card">
+                        <div>
+                            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                                <span class="plate-pill">10-WX-5678</span>
+                                <span class="status-badge badge-alert">5 Days Overdue</span>
+                            </div>
+                            <div style="font-weight:900; font-size:1.1rem;">Volkswagen Passat</div>
+                            <div style="font-size:0.85rem; color:var(--text-muted);">Owner: Doyle &bull; JOB-102</div>
+                            <div style="font-size:0.8rem; color:#fca5a5; margin-top:6px;">⚠️ Waiting on parts from Germany</div>
+                        </div>
+                        <button class="tap-action-btn" onclick="alert('Mockup action: Moving card to Being Fixed')">TAP: PARTS ARRIVED &rarr;</button>
+                    </div>
+
+                    <div class="preview-card">
+                        <div>
+                            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                                <span class="plate-pill">16-D-1234</span>
+                                <span class="status-badge badge-parts">Waiting Parts</span>
+                            </div>
+                            <div style="font-weight:900; font-size:1.1rem;">Ford Focus</div>
+                            <div style="font-size:0.85rem; color:var(--text-muted);">Owner: Murphy &bull; JOB-101</div>
+                            <div style="font-size:0.8rem; color:var(--text-muted); margin-top:6px;">Brake caliper ordered</div>
+                        </div>
+                        <button class="tap-action-btn" onclick="alert('Mockup action: Moving card to Being Fixed')">TAP: PARTS ARRIVED &rarr;</button>
+                    </div>
+
+                    <div class="preview-card">
+                        <div>
+                            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                                <span class="plate-pill">211-WX-890</span>
+                                <span class="status-badge badge-ready">Ready</span>
+                            </div>
+                            <div style="font-weight:900; font-size:1.1rem;">Toyota Corolla</div>
+                            <div style="font-size:0.85rem; color:var(--text-muted);">Owner: Walsh &bull; JOB-103</div>
+                            <div style="font-size:0.8rem; color:var(--text-muted); margin-top:6px;">Full annual service complete</div>
+                        </div>
+                        <button class="tap-action-btn" style="background:#065f46;" onclick="alert('Mockup action: Handed over / Archived')">&check; HANDED OVER TO OWNER</button>
+                    </div>
+                </div>
+
+                <!-- VIEW 2: OFFICE -->
+                <div id="mockupOffice" style="display: none;">
+                    <div class="office-preview-columns">
+                        <div class="office-col">
+                            <div class="office-col-title"><span>Being Checked</span><span>1</span></div>
+                            <div class="office-mini-card">
+                                <strong>221-D-3321</strong><br><span style="color:var(--text-muted);">Nissan Qashqai (Byrne)</span>
+                            </div>
+                        </div>
+                        <div class="office-col">
+                            <div class="office-col-title"><span>Waiting for Parts</span><span style="color:#ef4444;">2</span></div>
+                            <div class="office-mini-card overdue">
+                                <strong>10-WX-5678</strong><br><span style="color:#fca5a5;">5 days waiting (Red Alert)</span>
+                            </div>
+                            <div class="office-mini-card overdue">
+                                <strong>16-D-1234</strong><br><span style="color:#fca5a5;">2 days waiting (Red Alert)</span>
+                            </div>
+                        </div>
+                        <div class="office-col">
+                            <div class="office-col-title"><span>Ready to Collect</span><span style="color:#34d399;">2</span></div>
+                            <div class="office-mini-card" style="border-left-color: #059669;">
+                                <strong>211-WX-890</strong><br><span style="color:var(--text-muted);">Toyota Corolla (Walsh)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VIEW 3: CUSTOMER -->
+                <div id="mockupCustomer" style="display: none;">
+                    <div class="customer-preview-box">
+                        <div style="font-size:0.75rem; font-weight:800; color:var(--text-muted); text-transform:uppercase;">Vehicle Status Portal</div>
+                        <div class="plate-pill" style="font-size:1.5rem; margin: 12px 0;">16-D-1234</div>
+                        <div style="margin: 16px 0; padding: 16px; background: #1e293b; border-radius: 10px;">
+                            <span class="status-badge badge-parts" style="font-size:0.9rem; margin-bottom:8px;">Waiting for parts</span>
+                            <p style="font-size: 1.05rem; font-weight: 600; color: #f8fafc; margin-top: 6px;">"We're waiting on a part, should be tomorrow"</p>
+                        </div>
+                        <p style="font-size:0.8rem; color:var(--text-muted);">No mechanic names or internal notes shown. Clean & private.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROBLEM -->
+    <div class="section-container">
+        <h2>The Daily Grind</h2>
+        <div class="quote-box">
+            "I'm under a car and I have to wipe my hands to answer the same call about a car that's not ready."
+        </div>
+        <div class="quote-box">
+            "I have 3 cars behind the shed for 4 days waiting on a part and I only remember when the customer rings angry."
+        </div>
+    </div>
+
+    <!-- HOW IT WORKS -->
+    <div class="section-container">
+        <h2>How Bay Watch Works</h2>
+        <div class="steps-grid">
+            <div class="step-card">
+                <span class="step-num">Step 1</span>
+                <h3>Job In</h3>
+                <p>Office adds the car to the board with reg and job number. Zero typing needed for mechanics on the floor.</p>
+            </div>
+            <div class="step-card">
+                <span class="step-num">Step 2</span>
+                <h3>Tap to Advance</h3>
+                <p>Mechanics tap giant buttons on the wall tablet: Booked in &gt; Being checked &gt; Waiting for parts / Being fixed &gt; Ready.</p>
+            </div>
+            <div class="step-card">
+                <span class="step-num">Step 3</span>
+                <h3>Customer Checks</h3>
+                <p>Customers enter their reg and job number to view their live status instantly. No phone calls required.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PRICING -->
+    <div class="section-container">
+        <h2>Transparent Pricing</h2>
+        <div class="pricing-card">
+            <h3>Standard Garage Package</h3>
+            <div class="price-tag">€199 <span style="font-size:1.1rem; color:var(--text-muted);">set-up</span> + €59<span style="font-size:1.1rem; color:var(--text-muted);">/month</span></div>
+            <p class="price-details">Includes up to 5 users + customer portal. Saves ~€600/month in mechanic time (90 mins/day). Cancel anytime.</p>
+            <a href="https://yazminaraoz.github.io/CA2TASK2ALPHA/" target="_blank" class="btn-primary" style="padding: 14px 28px; font-size: 1rem;">Try Live Demo</a>
+        </div>
+    </div>
+
+    <!-- WAITING LIST FORM -->
+    <div class="section-container" id="waitlistSection">
+        <h2>Join the waiting list for rural garages</h2>
+        <div class="waitlist-form">
+            <form id="waitlistForm" onsubmit="handleWaitlistSubmit(event)">
+                <div class="form-group">
+                    <label>Your Name</label>
+                    <input type="text" class="form-input" id="wName" placeholder="e.g. Tom Kehoe" required>
+                </div>
+                <div class="form-group">
+                    <label>Garage Name</label>
+                    <input type="text" class="form-input" id="wGarage" placeholder="e.g. Kehoe's Garage" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone or Email</label>
+                    <input type="text" class="form-input" id="wContact" placeholder="e.g. 087 123 4567" required>
+                </div>
+                <div class="form-group">
+                    <label>County</label>
+                    <select class="form-input" id="wCounty" required>
+                        <option value="">Select County...</option>
+                        <option value="Wexford">Wexford</option>
+                        <option value="Carlow">Carlow</option>
+                        <option value="Wicklow">Wicklow</option>
+                        <option value="Kildare">Kildare</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; margin-top: 10px;">Join list</button>
+            </form>
+            <div id="successMessage" style="display: none; text-align: center; padding: 20px; color: #34d399; font-weight: 800; font-size: 1.1rem;">
+                Thanks - you're on the list. We'll be in touch for a 15-min demo on your own tablet.
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div>BAY WATCH &bull; Independent Garage Management</div>
+        <div style="margin-top: 8px;">
+            <a href="notes.html">Behind the build</a>
+        </div>
+    </footer>
+
+    <script>
+        function switchMockupTab(tab, btnEl) {
+            document.querySelectorAll('.tablet-nav-tabs .tab-btn').forEach(b => b.classList.remove('active'));
+            btnEl.classList.add('active');
+
+            document.getElementById('mockupWorkshop').style.display = 'none';
+            document.getElementById('mockupOffice').style.display = 'none';
+            document.getElementById('mockupCustomer').style.display = 'none';
+
+            if (tab === 'workshop') {
+                document.getElementById('mockupWorkshop').style.display = 'grid';
+            } else if (tab === 'office') {
+                document.getElementById('mockupOffice').style.display = 'block';
+            } else if (tab === 'customer') {
+                document.getElementById('mockupCustomer').style.display = 'block';
+            }
+        }
+
+        function handleWaitlistSubmit(e) {
+            e.preventDefault();
+            document.getElementById('waitlistForm').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
