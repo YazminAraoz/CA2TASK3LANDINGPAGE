@@ -3,18 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Behind the Build - BAY WATCH Documentation & Prompt Journey</title>
+    <title>notes.html</title>
     <style>
         :root {
-            --bg-dark: #090d16;
-            --bg-card: #1e293b;
             --bg-main: #0f172a;
+            --bg-card: #1e293b;
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
             --primary: #2563eb;
-            --accent-yellow: #fef08a;
-            --accent-green: #059669;
-            --accent-purple: #7c3aed;
             --border-color: #334155;
         }
 
@@ -29,139 +25,121 @@
             background-color: var(--bg-main);
             color: var(--text-main);
             line-height: 1.6;
-            padding-bottom: 60px;
-        }
-
-        header {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            color: #ffffff;
-            padding: 50px 20px;
-            text-align: center;
-            border-bottom: 4px solid var(--primary);
+            padding: 40px 20px;
         }
 
         .container {
-            max-width: 950px;
-            margin: 40px auto;
-            padding: 0 20px;
+            max-width: 900px;
+            margin: 0 auto;
         }
 
         h1 {
-            font-size: 2.6rem;
-            font-weight: 900;
-            margin-bottom: 10px;
-            letter-spacing: -0.5px;
+            font-size: 2rem;
+            margin-bottom: 20px;
             color: #60a5fa;
-        }
-
-        .subtitle {
-            color: var(--text-muted);
-            font-size: 1.2rem;
-            font-weight: 600;
         }
 
         .card {
             background: var(--bg-card);
-            border: 2px solid var(--border-color);
-            border-radius: 18px;
-            padding: 36px;
-            margin-bottom: 28px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
         }
 
         h2 {
-            font-size: 1.5rem;
-            font-weight: 900;
+            font-size: 1.3rem;
             color: #60a5fa;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            margin-bottom: 16px;
         }
 
         p, li {
             color: #cbd5e1;
-            margin-bottom: 14px;
-            font-size: 1.05rem;
+            margin-bottom: 12px;
+            font-size: 1rem;
         }
 
         ul {
-            padding-left: 22px;
+            padding-left: 20px;
             margin-bottom: 16px;
         }
 
         .prompt-box {
             background: #090d16;
             color: #38bdf8;
-            border-left: 5px solid var(--primary);
-            padding: 20px;
-            border-radius: 0 12px 12px 0;
+            border-left: 4px solid var(--primary);
+            padding: 16px;
+            border-radius: 0 8px 8px 0;
             font-family: monospace;
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin: 16px 0 24px 0;
+            font-size: 0.9rem;
+            margin: 12px 0 20px 0;
             white-space: pre-wrap;
-            border-top: 1px solid #1e293b;
-            border-right: 1px solid #1e293b;
-            border-bottom: 1px solid #1e293b;
         }
-
-        .tag {
-            display: inline-block;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            margin-bottom: 12px;
-        }
-
-        .tag-yellow { background: var(--accent-yellow); color: #0f172a; }
-        .tag-green { background: var(--accent-green); color: #ffffff; }
-        .tag-purple { background: var(--accent-purple); color: #ffffff; }
 
         .back-link {
             display: inline-block;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
             color: #60a5fa;
-            font-weight: 800;
             text-decoration: none;
-            font-size: 1rem;
+            font-weight: 600;
         }
 
         .back-link:hover {
             text-decoration: underline;
         }
-
-        footer {
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-top: 60px;
-        }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Behind the Build</h1>
-        <div class="subtitle">Complete Documentation & Prompt Journey</div>
-    </header>
-
     <div class="container">
         <a href="index.html" class="back-link">&larr; Return to Landing Page</a>
 
-        <!-- RAW NOTES SECTION -->
+        <h1>Documentation / Notes</h1>
+
         <div class="card">
-            <span class="tag tag-yellow">Phase 1: Raw Notes</span>
-            <h2>Raw Notes</h2>
-            <p>Tom Kehoe services 25 cars a day. Bríd Kehoe runs the office.</p>
-            <p>There are about 60 phone calls per day for car updates. When Bríd is busy, a mechanic has to stop working to answer them, which costs 90 minutes of mechanic time per day.</p>
+            <h2>Raw Notes (Before AI Hunch)</h2>
+            <p>CA</p>
+            <p>Tom Kehoe 25 cars</p>
+            <p>Bríd Kehoe runs office.</p>
+            <p>60 phone calls per day for car updates.</p>
+            <p>When Bríd is busy, a mechanic has to stop working to answer them, which costs 90 minutes of mechanic time per day.</p>
             <p>Cars waiting for parts get forgotten. Some stay 5 days or more with no one calling the customer.</p>
             <p>Internal app with three views:</p>
             <ul>
                 <li><strong>Workshop:</strong> Every car in today, each with its stage (Booked in, Being checked, Waiting for parts, Being fixed, Ready to collect). One tap moves a car to the next stage.</li>
                 <li><strong>Customer:</strong> A status screen found by job number and car registration, showing that car's stage and a short plain-English note, and nothing about any other customer or car.</li>
-                <li><strong>Office:</strong> Cars grouped by stage. A car waiting for
+                <li><strong>Office:</strong> Cars grouped by stage. A car waiting for parts for more than 2 days turns red, and the view counts cars that are ready but not yet collected.</li>
+            </ul>
+            <p>The workshop view has to run on a tablet on the wall with greasy hands: large buttons and easy handling, absolutely no typing.</p>
+            <p>Market for the generic version: Independent garages.</p>
+            <p>Who would pay for a generic version of this solution, and why?</p>
+            <p>Independent garages.</p>
+        </div>
+
+        <div class="card">
+            <h2>Process & Reflection</h2>
+            <p>From my hunch I tried to add my insight to make it more freely. I commit and check the code, and iterate with my input with the AI. I checked for hallucinations, invented data, and testimonials.</p>
+            <p>I use Gemini and polish the prompt, commit a few times until I got the result I wanted. I learned from this exercise that AI gives you general info and sometimes due to communication misinterprets things.</p>
+        </div>
+
+        <div class="card">
+            <h2>Prompts Used</h2>
+            
+            <p><strong>Prompt 1:</strong></p>
+            <div class="prompt-box">Build a single-file web app (HTML, CSS and JavaScript in one file, no external libraries, works on a phone) called Bay Watch for Kehoe's Garage, Enniscorthy, Co. Wexford, a Garage that is owned by Tom Kehoe. He has four mechanics service about 25 cars a day; Bríd Kehoe runs the office.</div>
+
+            <p><strong>Prompt 2:</strong></p>
+            <div class="prompt-box">Change it so if a customer access only can view the customer portal. As it is a demo, the password and log in is showing and disposable. Make a part with person assigned only on the workshop part. Make it more easy to assign and reassign mechanic. Think these will be people with greasy hands and busy environment. Also make it more design savy.</div>
+
+            <p><strong>Prompt 3:</strong></p>
+            <div class="prompt-box">Build index.html: a landing page that sells the generic version of BAY WATCH, not to Kehoe's Garage and not to everyone - to your Task 1 niche (Rural independent owner-run garages in Leinster)... Include headline, problem quotes, 3-step guide, pricing assumption (€199 setup + €59/month), and waiting list form.</div>
+
+            <p><strong>Prompt 4:</strong></p>
+            <div class="prompt-box">Make it more UX friendly. Exclude any task. Make the app from before like a real landing page for these service. Add more colour and cool design car brand inspired, make it mobile first. Eliminate testimonial. Make it true to the app designed. Make the model from tablet interactive and the same as demo with interaction but not dynamic sizing. Add contact formulation like before.</div>
+        </div>
+
+        <a href="index.html" class="back-link">&larr; Return to Landing Page</a>
+    </div>
+
+</body>
+</html>
