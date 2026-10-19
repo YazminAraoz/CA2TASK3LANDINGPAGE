@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Behind the Build - BAY WATCH</title>
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --bg-card: #1e293b;
+            --bg-main: #f8fafc;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --primary: #2563eb;
+            --border-color: #cbd5e1;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        header {
+            background-color: var(--bg-dark);
+            color: #ffffff;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 900;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #94a3b8;
+            font-size: 1.1rem;
+        }
+
+        .card {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--primary);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h3 {
+            font-size: 1.1rem;
+            font-weight: 800;
+            margin: 16px 0 8px 0;
+            color: #334155;
+        }
+
+        p, li {
+            color: #475569;
+            margin-bottom: 12px;
+            font-size: 1.05rem;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin-bottom: 16px;
+        }
+
+        .prompt-box {
+            background: #f1f5f9;
+            border-left: 4px solid var(--primary);
+            padding: 16px;
+            border-radius: 0 8px 8px 0;
+            font-family: monospace;
+            font-size: 0.95rem;
+            color: #1e293b;
+            margin: 12px 0 20px 0;
+            white-space: pre-wrap;
+        }
+
+        .badge {
+            background: #dbeafe;
+            color: #1e40af;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: var(--primary);
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Behind the Build</h1>
+        <div class="subtitle">Step-by-step documentation of building BAY WATCH with Gemini AI</div>
+    </header>
+
+    <div class="container">
+        <a href="index.html" class="back-link">&larr; Back to Landing Page</a>
+
+        <!-- SECTION 1 -->
+        <div class="card">
+            <span class="badge">Phase 1</span>
+            <h2>The Original Concept (Human Input & Initial Hook)</h2>
+            <p>Every software project starts with a real-world pain point. For BAY WATCH, the genesis came from observing independent rural garages dealing with severe administrative bottlenecks due to continuous phone interruptions.</p>
+            
+            <h3>Raw Human Input / Context:</h3>
+            <ul>
+                <li><strong>Operations:</strong> Tom Kehoe runs the garage with 4 mechanics servicing ~25 cars a day. Bríd runs the office.</li>
+                <li><strong>The Problem:</strong> Customers phone ~60 times a day asking for updates. When Bríd is busy, mechanics stop working to answer phones, costing 90 minutes of mechanic time daily.</li>
+                <li><strong>Forgotten Cars:</strong> Cars waiting for parts get forgotten and sit for 5+ days without customer updates.</li>
+                <li><strong>Core Views Required:</strong>
+                    <ul>
+                        <li><strong>Workshop:</strong> Wall tablet view for greasy hands, large targets, zero typing, 1-tap stage advancement.</li>
+                        <li><strong>Customer:</strong> Secure status lookup portal using Job Number + Registration (strict privacy, plain-English updates).</li>
+                        <li><strong>Office:</strong> Grouped by stage, auto-alerts in red for parts waiting &gt; 2 days, collection counters.</li>
+                    </ul>
+                </li>
+                <li><strong>Generic Niche Target:</strong> Rural independent owner-run garages in Leinster (1 owner + 2-5 mechanics, 15-30 cars/day, no full-time receptionist).</li>
+            </ul>
+        </div>
+
+        <!-- SECTION 2 -->
+        <div class="card">
+            <span class="badge">Phase 2</span>
+            <h2>Building the Functional Alpha App</h2>
+            <p>Using the human hook as the foundation, Gemini was prompted to create a fully working single-file HTML/CSS/JavaScript web application featuring client-side persistence and role-based access control.</p>
+
+            <h3>Prompt Used:</h3>
+            <div class="prompt-box">Build a single-file web app (HTML, CSS and JavaScript in one file, no external libraries, works on a phone) called BAY WATCH, for Kehoe's Garage, Enniscorthy, Co. Wexford... [incorporating workshop, customer, and office views with localStorage].</div>
+
+            <h3>Evolution & Refinement Prompts:</h3>
+            <ul>
+                <li><em>Prompt:</em> "Change it so if a customer access only can view the customer portal. As it is a demo, the password and log in is showing and disposable. Make a part with person assigned only on the workshop part."</li>
+                <li><em>Prompt:</em> "Make it more easy to assign and reassign mechanic. Think these will be people with greasy hands and busy environment. Also make it more design savy."</li>
+            </ul>
+        </div>
+
+        <!-- SECTION 3 -->
+        <div class="card">
+            <span class="badge">Phase 3</span>
+            <h2>Transitioning to a SaaS Landing Page</h2>
+            <p>Once the core alpha logic was verified and tested, the focus shifted to marketing the solution to independent rural garage owners across Leinster.</p>
+
+            <h3>Prompt Used:</h3>
+            <div class="prompt-box">Build index.html: a landing page that sells the generic version of BAY WATCH, not to Kehoe's Garage and not to everyone - to your Task 1 niche (Rural independent owner-run garages in Leinster)... Include headline, problem quotes, 3-step guide, pricing assumption (€199 setup + €59/month), and waiting list form.</div>
+
+            <h3>Design & UX Iteration Prompts:</h3>
+            <ul>
+                <li><em>Prompt:</em> "Make it more UX friendly. Exclude any task. Make the app from before like a real landing page for these service."</li>
+                <li><em>Prompt:</em> "Add more colour and cool design car brand inspired, make it mobile first. Eliminate testimonial. Make it true to the app designed."</li>
+                <li><em>Prompt:</em> "Make the model from tablet interactive and the same as demo with interaction but not dynamic sizing. Add contact formulation like before."</li>
+            </ul>
+        </div>
+
+        <!-- SECTION 4 -->
+        <div class="card">
+            <span class="badge">Phase 4</span>
+            <h2>Key Technical Takeaways</h2>
+            <ul>
+                <li><strong>Zero Dependencies:</strong> Built entirely in native HTML5, modern CSS3 (Flexbox/Grid), and Vanilla JavaScript for maximum reliability and zero build configuration.</li>
+                <li><strong>State Persistence:</strong> Utilized browser <code>localStorage</code> so demo job updates persist across reloads.</li>
+                <li><strong>Mobile-First & Touch Optimized:</strong> Designed with giant touch targets (&gt;58px height) to accommodate greasy hands and wall tablets.</li>
+            </ul>
+        </div>
+
+        <a href="index.html" class="back-link">&larr; Back to Landing Page</a>
+    </div>
+
+    <footer>
+        <div>BAY WATCH &bull; Behind the Build Notes</div>
+    </footer>
+
+</body>
+</html>
