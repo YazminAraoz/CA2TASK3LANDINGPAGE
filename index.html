@@ -441,7 +441,7 @@
         .pill-ready { background: #d1fae5; color: #065f46; }
         .pill-alert { background: #dc2626; color: #ffffff; }
 
-        /* Office View Styles */
+        /* Office View Styles - HORIZONTAL SCROLL COLUMNS */
         .summary-bar {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -477,16 +477,21 @@
 
         .alert-card .summary-value { color: var(--alert-red-text); }
 
+        /* HORIZONTAL KANBAN COLUMNS WRAPPER */
         .office-columns {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 12px;
+            display: flex;
+            gap: 16px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+            align-items: flex-start;
         }
 
         .office-column {
             background: #e2e8f0;
             border-radius: 12px;
             padding: 12px;
+            min-width: 280px;
+            flex: 1;
             min-height: 400px;
         }
 
@@ -500,6 +505,7 @@
             align-items: center;
             padding-bottom: 6px;
             border-bottom: 2px solid #cbd5e1;
+            white-space: nowrap;
         }
 
         .col-count {
@@ -641,7 +647,7 @@
     <!-- HERO SECTION -->
     <section class="hero">
         <h2>Stop answering "Where's me motor?"<br><span>Save 90 mins a day</span></h2>
-        <p>One-tap job board for the wall tablet + a link customers check themselves.</p>
+        <p>One-tap job board for mobile and tablet + a link customers check themselves.</p>
         <a href="#liveDemo" class="btn-cta">Try the demo - Live Workshop Board</a>
     </section>
 
@@ -651,7 +657,7 @@
         <div class="benefits-grid">
             <div class="benefit-card">
                 <h3>Zero Typing on the Floor</h3>
-                <p>Mechanics with greasy hands can update vehicle stages instantly with large, responsive touch targets on the wall tablet.</p>
+                <p>Mechanics with greasy hands can update vehicle stages instantly with large, responsive touch targets on mobile and tablet.</p>
             </div>
             <div class="benefit-card">
                 <h3>No More Forgotten Parts</h3>
@@ -703,7 +709,7 @@
                     <div class="workshop-grid" id="workshopGrid"></div>
                 </section>
 
-                <!-- VIEW 2: OFFICE DASHBOARD -->
+                <!-- VIEW 2: OFFICE DASHBOARD (HORIZONTAL COLUMNS) -->
                 <section id="officeView" class="view-section">
                     <div class="summary-bar">
                         <div class="summary-card">
@@ -822,7 +828,7 @@
                 <button type="submit" class="btn-cta" style="width: 100%; justify-content: center; margin-top: 10px;">Join list</button>
             </form>
             <div id="waitlistSuccess" style="display: none; text-align: center; color: #059669; font-weight: 800; font-size: 1.1rem; padding: 20px;">
-                Thanks - you're on the list. We'll be in touch for a 15-min demo on your own tablet.
+                Thanks - you're on the list. We'll be in touch for a 15-min demo on your own mobile or tablet.
             </div>
         </div>
     </section>
